@@ -1,5 +1,5 @@
 # Ex02 Django ORM Web Application
-## Date: 
+## Date:25/11/2026 
 
 ## AIM
 To develop a Django Application to store and retrieve data from a Vehicle Service Database platform using Object Relational Mapping(ORM).
@@ -31,12 +31,62 @@ Apply the migration files of the created app to the database
 Execute Django admin using localhost and create details for 10 entries
 
 ## PROGRAM
+```
+Models.py
 
 
+from django.db import models
+from django.contrib import admin
+
+
+class Car(models.Model):
+
+    car_id = models.CharField(
+        max_length=20,
+        primary_key=True,
+        help_text="Car ID"
+    )
+
+    brand = models.CharField(max_length=100)
+
+    model = models.CharField(max_length=100)
+
+    year = models.IntegerField()
+
+    price = models.IntegerField()
+
+    fuel_type = models.CharField(max_length=50)
+
+    quantity = models.IntegerField()
+
+    color = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.brand + " " + self.model
+
+
+class CarAdmin(admin.ModelAdmin):
+
+    list_display = (
+        'car_id',
+        'brand',
+        'model',
+        'year',
+        'price',
+        'fuel_type',
+        'quantity',
+        'color'
+    )
+    admin.py
+
+from django.contrib import admin
+from .models import Car,CarAdmin
+
+admin.site.register(Car, CarAdmin)
+```
 
 ## OUTPUT
-
-
+<img width="1600" height="835" alt="WhatsApp Image 2026-11-25 at 1 53 22 PM" src="https://github.com/user-attachments/assets/fa56e865-47e3-451f-b757-ea7b8a34d999" />
 
 ## RESULT
 Thus the program for creating vehicle service Database using ORM hss been executed successfully.
